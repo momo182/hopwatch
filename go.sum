@@ -1,0 +1,4 @@
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/kellegous/websocket v0.0.0-20130122144708-14f8b2f699a3 h1:H4npAsI0gEslUBOJtmexogWmYdYl6httixh6XDzYzt4=
+github.com/kellegous/websocket v0.0.0-20130122144708-14f8b2f699a3/go.mod h1:IBn2fqf2SAqBp4gEq3zF5/0fVEusAzgUhXZIxZZvgqU=
