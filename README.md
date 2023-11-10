@@ -1,3 +1,8 @@
+# WARNING
+this repo is mere copy of https://github.com/emicklei/hopwatch
+with some changes intended to be used in CI/CD
+use at your own risc!
+
 # Hopwatch, a debugging tool for Go
 
 Hopwatch is a simple tool in HTML5 that can help debug Go programs. 
@@ -9,6 +14,12 @@ On the hopwatch page, the developer can view debug information and choose to res
 [First announcement](https://ernestmicklei.com/2012/12/hopwatch-a-debugging-tool-for-go/)
 
 ![How](hopwatch_how.png)
+
+## CI vars
+
+- HOPWATCH_ENABLED
+- HOPWATCH_SERVER_ADDR
+- HOPWATCH_PORT
 
 
 ## Distributed (work in progress)

@@ -17,6 +17,9 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/gookit/goutil/envutil"
+	"github.com/gookit/goutil/netutil"
+	"github.com/gookit/goutil/strutil"
 	"github.com/kellegous/websocket"
 )
 
@@ -92,6 +95,48 @@ func init() {
 			hopwatchPort = port
 		}
 	}
+
+	// hopwatchEnabled
+	envKeyToProcess := "HOPWATCH_ENABLED"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		hopwatchEnabled = envutil.GetBool(envKeyToProcess)
+	}
+	// hopwatchOpenEnabled
+	envKeyToProcess = "HOPWATCH_OPEN_ENABLED"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		hopwatchOpenEnabled = envutil.GetBool(envKeyToProcess)
+	}
+	// hopwatchBreakEnabled
+	envKeyToProcess = "HOPWATCH_BREAK_ENABLED"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		hopwatchBreakEnabled = envutil.GetBool(envKeyToProcess)
+	}
+	// hopwatchServerAddress
+	envKeyToProcess = "HOPWATCH_SERVER_ADDR"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		hopwatchServerAddress = envutil.Getenv(envKeyToProcess)
+	}
+	// hopwatchPort
+	envKeyToProcess = "HOPWATCH_PORT"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		hopwatchPort = int64(envutil.GetInt(envKeyToProcess))
+	}
+
+	// hopwatchHostParam
+	envKeyToProcess = "HOPWATCH_HOST"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		host := envutil.Getenv(envKeyToProcess)
+		hopwatchHostParam = &host
+	}
+
+	envKeyToProcess = "HOPWATCH_CI"
+	if strutil.IsNotBlank(envutil.Getenv(envKeyToProcess)) {
+		addr := netutil.InternalIP()
+		log.Printf("[hopwatch] using address:%v", addr)
+		hopwatchHostParam = &addr
+		hopwatchOpenEnabled = false
+	}
+
 	http.HandleFunc("/hopwatch.html", html)
 	http.HandleFunc("/hopwatch.css", css)
 	http.HandleFunc("/hopwatch.js", js)
